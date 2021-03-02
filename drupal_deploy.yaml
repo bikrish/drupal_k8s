@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drupal-deploy
+  labels:
+    app: drupal
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: drupal
+  template:
+    metadata:
+      labels:
+        app: drupal
+    spec:
+      containers:
+        - name: drupal-cntr
+          image: drupal:8
+          ports:
+            - containerPort: 80
+          env:
+            - name: POSTGRES_DB
+              value: drupal
+            - name: POSTGRES_USER
+              value: drupal
+            - name: POSTGRES_PASSWORD
+              value: drupal
