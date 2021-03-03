@@ -19,10 +19,3 @@ spec:
           image: drupal:8
           ports:
             - containerPort: 80
-          env:
-            - name: POSTGRES_DB
-              value: drupal
-            - name: POSTGRES_USER
-              value: drupal
-            - name: POSTGRES_PASSWORD
-              value: drupal
