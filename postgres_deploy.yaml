@@ -14,6 +14,10 @@ spec:
       labels:
         app: postgres
     spec:
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: postgres-volume-claim
       containers:
         - name: postgres-cntr
           image: postgres:12
@@ -26,3 +30,6 @@ spec:
               value: drupal
             - name: POSTGRES_DB
               value: drupal
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data

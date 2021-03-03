@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-volume
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 100Mi
+  storageClassName: postgres-storage
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /opt/postgres
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-volume-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: postgres-storage
+  resources:
+    requests:
+      storage: 50Mi
