@@ -14,8 +14,30 @@ spec:
       labels:
         app: drupal
     spec:
+      volumes:
+        - name: modules
+          persistentVolumeClaim:
+            claimName: drupal-modules-claim
+        - name: sites
+          persistentVolumeClaim:
+            claimName: drupal-sites-claim
+        - name: profiles
+          persistentVolumeClaim:
+            claimName: drupal-profiles-claim
+        - name: themes
+          persistentVolumeClaim:
+            claimName: drupal-themes-claim
       containers:
         - name: drupal-cntr
           image: drupal:8
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: modules
+              mountPath: /var/www/html/modules
+            - name: sites
+              mountPath: /var/www/html/sites
+            - name: profiles
+              mountPath: /var/www/html/profiles
+            - name: themes
+              mountPath: /var/www/html/themes

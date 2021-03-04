@@ -24,3 +24,112 @@ spec:
   resources:
     requests:
       storage: 50Mi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: drupal-modules
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 50Mi
+  storageClassName: drupal-storage-modules
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /opt/drupal/modules
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: drupal-modules-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: drupal-storage-modules
+  resources:
+    requests:
+      storage: 50Mi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: drupal-sites
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 50Mi
+  storageClassName: drupal-storage-sites
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /opt/drupal/sites
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: 
+  name: drupal-sites-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: drupal-storage-sites
+  resources:
+    requests:
+      storage: 50Mi 
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: drupal-profiles
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: drupal-storage-profiles
+  capacity:
+    storage: 50Mi
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /opt/drupal/profiles
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: drupal-profiles-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: drupal-storage-profiles
+  resources:
+    requests:
+      storage: 50Mi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: drupal-themes
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 50Mi
+  storageClassName: drupal-storage-themes
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /opt/drupal/themes
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: drupal-themes-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: drupal-storage-themes
+  resources:
+    requests:
+      storage: 50Mi
+
