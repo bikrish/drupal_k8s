@@ -41,3 +41,11 @@ spec:
               mountPath: /var/www/html/profiles
             - name: themes
               mountPath: /var/www/html/themes
+      initContainers:
+        - name: drupal-init
+          image: drupal:8
+          command: ["/bin/bash", "-c"]
+          args: ['cp -r /var/www/html/sites/* /tmp/sites/; chown www-data:www-data /tmp/sites/ -R']
+          volumeMounts:
+            - name: sites
+              mountPath: /tmp/sites
